@@ -15,4 +15,15 @@ public class GameStoreTest {
     }
 
     // другие ваши тесты
+    @Test
+    public void shouldGetMostPlayerEquallyOne() {
+
+        GameStore store = new GameStore();
+
+        store.addPlayTime("Пётр", 1);
+
+        String actual = store.getMostPlayer();
+        String expected = "Пётр";
+        assertEquals(expected, actual);
+    }
 }
