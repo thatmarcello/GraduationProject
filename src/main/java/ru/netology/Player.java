@@ -6,10 +6,10 @@ import java.util.Map;
 public class Player {
     private String name;
 
-    /** информация о том, в какую игру сколько часов было сыграно
+    /** информация  том, в какую игру сколько часов было сыграно
     ключ - игра
     значение - суммарное количество часов игры в эту игру */
-    private Map<Game, Integer> playedTime = new HashMap<>();
+    protected Map<Game, Integer> playedTime = new HashMap<>();
 
     public Player(String name) {
         this.name = name;
@@ -33,9 +33,9 @@ public class Player {
     public int play(Game game, int hours) {
         game.getStore().addPlayTime(name, hours);
         if (playedTime.containsKey(game)) {
-            playedTime.put(game, playedTime.get(game));
+            playedTime.put(game, playedTime.get(game) + hours);
         } else {
-            playedTime.put(game, hours);
+            throw new RuntimeException("Игра " + game.getTitle() + " не установлена");
         }
         return playedTime.get(game);
     }
@@ -47,8 +47,6 @@ public class Player {
         for (Game game : playedTime.keySet()) {
             if (game.getGenre().equals(genre)) {
                 sum += playedTime.get(game);
-            } else {
-                sum = 0;
             }
         }
         return sum;
@@ -56,7 +54,15 @@ public class Player {
 
     /** Метод принимает жанр и возвращает игру этого жанра, в которую играли больше всего
      Если в игры этого жанра не играли, возвращается null */
-    public Game mostPlayerByGenre(String genre) {
-        return null;
+    public String mostPlayerByGenre(String genre) {
+        int mostTime = 0;
+        String mostGame = null;
+        for (Game game : playedTime.keySet()) {
+            if (genre.equals(game.getGenre()) && mostTime < playedTime.get(game)) {
+                mostTime = playedTime.get(game);
+                mostGame = game.getTitle();
+            }
+        }
+        return mostGame;
     }
 }
