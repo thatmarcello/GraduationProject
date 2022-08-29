@@ -9,13 +9,20 @@ public class PlayerTest {
     public void shouldSumGenreIfOneGame() {
         GameStore store = new GameStore();
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        Game game1 = store.publishGame("PUBG", "Battle Royal");
+        Game game3 = store.publishGame("CoD", "Battle Royal");
 
         Player player = new Player("Petya");
         player.installGame(game);
+        player.installGame(game1);
+        player.installGame(game3);
         player.play(game, 3);
+        player.play(game1, 2);
+        player.play(game3, 1);
+        player.play(game1, 1);
 
-        int expected = 3;
-        int actual = player.sumGenre(game.getGenre());
+        int expected = 4;
+        int actual = player.sumGenre("Battle Royal");
         assertEquals(expected, actual);
     }
 
