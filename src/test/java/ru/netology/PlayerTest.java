@@ -30,8 +30,10 @@ public class PlayerTest {
     @Test
     public void shouldThrowRunTimeException() {
         GameStore store = new GameStore();
+
         Game game = store.publishGame("Call of Duty", "Battle Royal");
         Game game1 = store.publishGame("Uncharted", "Battle Royal" );
+
         Game game3 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
 
         Player player = new Player("Petya");
@@ -43,6 +45,7 @@ public class PlayerTest {
 
         });
     }
+
     @Test
     public void shouldMostPlayerByGenre() {
         GameStore store = new GameStore();
@@ -59,9 +62,11 @@ public class PlayerTest {
         player.play(game3, 1);
 
         String expected = "Call of Duty";
+
         String actual = player.mostPlayerByGenre("Battle Royal");
         assertEquals(expected, actual);
     }
+
     @Test
     public void shouldInstallNewGame() {
         GameStore store = new GameStore();

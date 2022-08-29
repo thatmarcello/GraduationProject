@@ -26,6 +26,7 @@ public class GameStoreTest {
         String expected = "Пётр";
         assertEquals(expected, actual);
     }
+
     @Test
     public void shouldGetSumPlayedTime() {
 
