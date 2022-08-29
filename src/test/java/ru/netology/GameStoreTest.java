@@ -26,4 +26,17 @@ public class GameStoreTest {
         String expected = "Пётр";
         assertEquals(expected, actual);
     }
+    @Test
+    public void shouldGetSumPlayedTime() {
+
+        GameStore store = new GameStore();
+
+        store.addPlayTime("Анна", 2);
+        store.addPlayTime("Петя", 5);
+        store.addPlayTime("Галя", 3);
+
+        int actual = store.getSumPlayedTime();
+        int expected = 10;
+        assertEquals(expected, actual);
+    }
 }
