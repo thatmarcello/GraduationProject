@@ -9,7 +9,7 @@ public class Player {
     /** информация  том, в какую игру сколько часов было сыграно
     ключ - игра
     значение - суммарное количество часов игры в эту игру */
-    private Map<Game, Integer> playedTime = new HashMap<>();
+    protected Map<Game, Integer> playedTime = new HashMap<>();
 
     public Player(String name) {
         this.name = name;
