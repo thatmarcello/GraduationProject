@@ -20,5 +20,20 @@ public class PlayerTest {
     }
 
     // другие ваши тесты
+    @Test
+    public void shouldThrowRunTimeException() {
+        GameStore store = new GameStore();
+        Game game = store.publishGame("PUBG", "Battle Royale");
+        Game game1 = store.publishGame("GoT", "Battle Royale" );
+        Game game3 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
 
+        Player player = new Player("Petya");
+        player.installGame(game);
+
+
+        assertThrows(RuntimeException.class, () -> {
+            player.play(game3, 1);
+
+        });
+    }
 }
